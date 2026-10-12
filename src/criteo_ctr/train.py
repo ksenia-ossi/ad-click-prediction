@@ -47,8 +47,6 @@ def main() -> None:
     # 2. Logistic regression
     t = time.time()
     X_tr, X_te = make_linear_features(train), make_linear_features(test)
-    # TODO(ksenia): tune C with a validation split taken from the END of train
-    # (not random!) and compare L1 vs L2 penalty.
     lr = LogisticRegression(C=0.5, max_iter=1000, solver="liblinear", random_state=SEED)
     lr.fit(X_tr, y_tr)
     preds["logreg"] = lr.predict_proba(X_te)[:, 1]
@@ -58,8 +56,6 @@ def main() -> None:
     t = time.time()
     keep = fit_rare_maps(train)
     T_tr, T_te = make_tree_features(train, keep), make_tree_features(test, keep)
-    # TODO(ksenia): try num_leaves / learning_rate / min_child_samples; add early
-    # stopping on a time-based validation set; look at feature importance.
     gbm = lgb.LGBMClassifier(
         n_estimators=400, learning_rate=0.05, num_leaves=63, min_child_samples=50,
         subsample=0.8, subsample_freq=1, colsample_bytree=0.8, random_state=SEED, verbose=-1,
