@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:16
+    container_name: adclick-pg
+    environment:
+      POSTGRES_USER: criteo
+      POSTGRES_PASSWORD: criteo
+      POSTGRES_DB: criteo
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/raw:/data:ro
