@@ -1,7 +1,7 @@
 PY ?= python3
 export PYTHONPATH := src
 
-.PHONY: data db-up db-load sql eda train test all
+.PHONY: data db-up db-load sql eda train notebook test all
 
 data:            ## download the official 100k-row Criteo sample
 	$(PY) -m criteo_ctr.download
@@ -20,6 +20,9 @@ eda:             ## pandas EDA -> reports/figures/*.png + reports/eda.md
 
 train:           ## train baseline / logistic regression / LightGBM -> reports/metrics.md
 	$(PY) -m criteo_ctr.train
+
+notebook:        ## re-execute notebooks/eda.ipynb in place
+	jupyter nbconvert --to notebook --execute --inplace notebooks/eda.ipynb
 
 test:
 	$(PY) -m pytest -q

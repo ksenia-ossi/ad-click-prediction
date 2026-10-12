@@ -20,7 +20,7 @@ raw TSV ──> PostgreSQL (COPY, SQL exploration) ──> pandas EDA ──> fe
 | logistic regression (hashed one-hot) | **0.4656** | **0.766** |
 | LightGBM (categorical)               | 0.4793   | 0.756  |
 
-Full tables: [reports/metrics.md](reports/metrics.md) · SQL: [reports/sql_exploration.md](reports/sql_exploration.md) · EDA: [reports/eda.md](reports/eda.md)
+Full tables: [reports/metrics.md](reports/metrics.md) · SQL: [reports/sql_exploration.md](reports/sql_exploration.md) · EDA: [reports/eda.md](reports/eda.md) · **Notebook: [notebooks/eda.ipynb](notebooks/eda.ipynb)** (EDA with plots and the reasoning behind each feature-engineering choice)
 
 ![CTR by numeric feature](reports/figures/ctr_by_numeric.png)
 
@@ -50,6 +50,7 @@ src/criteo_ctr/
   features.py    log1p + missing flags, hashing trick, rare-value grouping, time split
   train.py       constant baseline, logistic regression, LightGBM; log-loss, AUC, calibration
 tests/           pytest for the feature pipeline
+notebooks/       eda.ipynb: exploratory analysis, rendered on GitHub
 reports/         generated tables and figures
 ```
 
